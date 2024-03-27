@@ -2,7 +2,7 @@ import express from "express";
 const app = express();
 const port = 3000;
 
-import testApi from "./testapi.json" assert { type: "json" };
+import emojiAPI from "./emojiApi.json" assert { type: "json" };
 
 app.get("/search", (req, res) => {
   console.log(req.query);
@@ -13,13 +13,13 @@ app.get("/search", (req, res) => {
     if (Number(count) > 20) {
       return res.send('"count" should be less than 20');
     } else {
-      let testApiFilteredResult = testApi.filter((item) => {
+      let emojiAPIFilteredResult = emojiAPI.filter((item) => {
         return (
           item.keywords.toLowerCase().includes(q.toLowerCase()) ||
           item.title.toLowerCase().includes(q.toLowerCase())
         );
       });
-      result.push(...testApiFilteredResult.slice(0, Number(count)));
+      result.push(...emojiAPIFilteredResult.slice(0, Number(count)));
     }
   })();
 
