@@ -6,7 +6,12 @@ let res, out;
 ul.addEventListener("click", async (e) => {
   if (e.target.tagName === "LI") {
     // Toggle the visibility of the span element
-    e.target.querySelector("span").classList.toggle("hidden");
+    e.target.querySelector("span").classList.remove("hidden");
+
+    setTimeout(() => {
+      e.target.querySelector("span").classList.add("hidden");
+    }, 1000);
+
     await navigator.clipboard.writeText(
       e.target.textContent.trim().replace(/\s*copied\s*/, "")
     );
@@ -30,12 +35,25 @@ function displayOnDom(outArray) {
   });
 }
 
-submitBtn.addEventListener("click", async () => {
-  if (query) {
-    // let res = await fetch(`https://test-mp4z.onrender.com/search?${query}`);
-    res = await fetch(`http://localhost:3000/search?q=${query.value}`);
-    out = await res.json();
-  }
-  console.log(out);
-  displayOnDom(out);
-});
+const debounce = (fn, delay = 1000) => {
+  let timer;
+  return (...args) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      fn.apply(this, args);
+    }, delay);
+  };
+};
+
+query.addEventListener(
+  "input",
+  debounce(async () => {
+    if (query) {
+      // let res = await fetch(`https://test-mp4z.onrender.com/search?${query}`);
+      res = await fetch(`http://localhost:3000/search?q=${query.value}`);
+      out = await res.json();
+    }
+    console.log(out);
+    displayOnDom(out);
+  })
+);
