@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="shortcut icon" href="https://fav.farm/🤖" type="image/x-icon" />
     <title>Emoji API</title>
   </head>
   <body class="h-screen overflow-hidden">
@@ -17,7 +18,7 @@
           placeholder="Search emoji..."
         />
         <button
-          class="border px-2 py-1 rounded bg-blue-600 text-white ml-2"
+          class="border px-2 py-1 rounded bg-blue-600 text-sm font-semibold text-white ml-2"
           type="submit"
           id="submitBtn"
         >
@@ -25,8 +26,13 @@
         </button>
       </div>
       <div class="outputs w-4/5 mx-auto mt-8">
-        <ul class="grid grid-cols-4 text-center items-center gap-2" id="ul">
-          <li class="text-3xl p-3 bg-blue-600 w-fit rounded relative">
+        <ul
+          class="grid grid-cols-4 md:flex md:justify-center text-center items-center gap-2"
+          id="ul"
+        >
+          <li
+            class="text-3xl p-3 bg-blue-600 w-fit rounded relative cursor-pointer"
+          >
             😂<span
               class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-sm text-white bg-black px-2 py-1 rounded hidden"
               >copied</span
