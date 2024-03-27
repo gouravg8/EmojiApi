@@ -1,11 +1,10 @@
 import express from "express";
+import emojiAPI from "./emojiApi.json" assert { type: "json" };
 import cors from "cors";
 const app = express();
 const port = 3000;
 
-import emojiAPI from "./emojiApi.json" assert { type: "json" };
-
-app.use(cors);
+app.use(cors());
 
 app.get("/search", (req, res) => {
   console.log(req.query);
